@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
     <meta charset='UTF-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
@@ -8,18 +8,39 @@
     <script src='script.js' defer></script>
     <title>ApiGasolinera</title>
 </head>
+
 <body>
     <h1>ApiGasolinera</h1>
     <div id="filtros">
-        <label for="provincias">Provincias:</label>
+        <label for="provincia">Provincia:</label>
+        <select name="" id="provincia">
+            <option value="">Seleccione Provincia</option>
+        </select>
 
+        <label for="municipio">Municipio:</label>
+        <select name="" id="municipio">
+            <option value="">Seleccione Municipio</option>
+        </select>
 
+        <label for="combustible">Tipo de combustible:</label>
+        <select name="" id="combustible">
+            <option value="">Seleccione combustible</option>
+            <option value="GasoleoA">Gasóleo A</option>
+            <option value="Gasolina95E5">Gasolina 95 E5</option>
+            <option value="Gasolina98E5">Gasolina 98 E5</option>
+        </select>
 
+        <label>
+            <input type="checkbox" id="soloAbiertas">
+            Solo gasolineras abiertas
+        </label>
 
+        <button id="buscar">Buscar</button>
 
     </div>
 
+    <div id="resultados"></div>
+
 </body>
+
 </html>
-
-
