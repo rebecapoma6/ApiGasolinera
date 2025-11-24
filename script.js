@@ -55,9 +55,49 @@ async function cargarMunicipios(idProvincia) {
 }
 
 
+async function buscarGasolinera() {
+    const idProvincia = selectProvincia.value;
+    const idMunicipio = selectMuni.value;
+    const tipoCombustible = selectCombustible.value;
+    const soloAbiertasG = inputAbiertas.checked;
+
+    if (!idProvincia) {
+        alert("Seleccione una Provincia"); return;
+    }
+
+    const url = idMunicipio
+        ? `${URL_GASOLINERAS_MUNICIPIO}${idMunicipio}`
+        : `${URL_GASOLINERAS_PROVINCIA}${idProvincia}`;
+
+
+    try {
+        const respuesta = await fetch(url);
+        const datos = await respuesta.json();
+        console.log(datos);
+
+        const gasolinerasFiltradas = datos.ListaEESSPrecio.filter(gasolinera => {
+            const tieneCombustible = tipoCombustible ? gasolinera[`Precio${tipoCombustible}`] !== undefined : true;
+            const abierta = soloAbiertasG ? gasolinera.Horario.includes("Abierto") : true;
+            return tieneCombustible && abierta;
+        });
+        mostraResultados(gasolinerasFiltradas, tipoCombustible);
+
+
+    } catch (error) {
+        console.error("Error al buscar gasolineras:", error);
+        containerResultados.textContent = "Error al buscar gasolineras. Intente nuevamente.";
+    }
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
     cargarProvincias();
     selectProvincia.addEventListener("change", (e) => {
         cargarMunicipios(e.target.value);
     });
+
+  
+  btnBuscar.addEventListener("click", () => {
+    buscarGasolinera();
+  });
 });
