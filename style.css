@@ -1,7 +1,150 @@
 
-*{
-    margin: 0;
-    padding: 0;
+:root {
+  --color-bg: #f4f6f9;
+  --color-card: #ffffff;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-primary: #2563eb;
+  --color-primary-hover: #1e40af;
+  --color-border: #e5e7eb;
+  --color-success: #16a34a;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 10px;
+  --transition: 0.2s ease-in-out;
 }
 
+body {
+  font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 24px;
+ 
+  line-height: 1.6;
+}
+
+#filtros {
+  display: flex; 
+  flex-direction: column; /* apila los elementos uno debajo de otro */
+  
+  gap: 16px;              /* espacio entre cada filtro */
+  margin-bottom: 24px;
+  padding: 20px;
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+#filtros label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-muted);
+  margin-bottom: 6px;
+  display: block;
+}
+
+#filtros select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: #fff;
+  font-size: 0.95rem;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+
+.checkbox-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.checkbox-group label {
+  font-size: 0.95rem;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* ===== Botón ===== */
+#buscar {
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--color-primary);
+  color: #fff;
+  width: 100px;
+  cursor: pointer;
+  transition: background var(--transition), transform 0.1s ease;
+}
+
+#buscar:hover {
+  background: var(--color-primary-hover);
+}
+
+#buscar:active {
+  transform: scale(0.98);
+}
+
+/* ===== Resultados ===== */
+#resultados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.gasolinera {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 16px;
+  transition: transform var(--transition);
+}
+
+.gasolinera:hover {
+  transform: translateY(-4px);
+}
+
+.gasolinera h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.gasolinera p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: var(--color-text);
+}
+
+.gasolinera p strong {
+  color: var(--color-muted);
+  font-weight: 600;
+}
+
+.gasolinera .precio {
+  margin-top: 10px;
+  font-weight: 700;
+  color: var(--color-success);
+  font-size: 1rem;
+}
+
+/* ===== Estado vacío ===== */
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 1rem;
+  padding: 24px;
+  background: var(--color-card);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius);
+}
 
